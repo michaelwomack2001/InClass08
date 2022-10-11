@@ -2,15 +2,27 @@ package com.example.group4_inclass8;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.android.material.tabs.TabLayout;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +30,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class contactListFragment extends Fragment {
-    private final
+
+    private final OkHttpClient client = new OkHttpClient();
     ListView contactLv;
     ArrayList<Contacts> contactsList = new ArrayList<>();
     contactAdapter adapter;
@@ -61,6 +74,8 @@ public class contactListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -70,6 +85,7 @@ public class contactListFragment extends Fragment {
         View contactsListView = inflater.inflate(R.layout.fragment_contact_list,container, false);
 
         //Populate contact list adapter
+
 
         adapter = new contactAdapter(getContext(),R.layout.contact_list_adapter, contactsList);
         contactLv = contactsListView.findViewById(R.id.listView);
