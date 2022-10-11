@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Group4_Inclass8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nameLbl2">Name:</string>
+    <string name="emailLbl2">Email:</string>
+    <string name="phoneNumLbl2">Number:</string>
+    <string name="typeLbl2">Type:</string>
+    <string name="cancel">Cancel</string>
+    <string name="addBtn">Add</string>
+    <string name="welcomeLbl">Welcome to your contacts</string>
+    <string name="contactTallyLbl">You have # contacts</string>
+    <string name="addContactBtn">Add</string>
+    <string name="delete">Delete</string>
+    <string name="nameLbl3">Name here</string>
+    <string name="emailLbl3">Email here</string>
+    <string name="phoneNumLbl3">Number here</string>
+    <string name="typeLbl3">Type here</string>
+</resources>
