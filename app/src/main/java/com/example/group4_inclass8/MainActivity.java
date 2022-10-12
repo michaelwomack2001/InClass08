@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -81,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if(response.isSuccessful()) {
                     ResponseBody responseBody = response.body();
-                    Log.d(TAG, "onResponse" + responseBody.string());
-
+                    String body = responseBody.string();
+                    Log.d(TAG, "onResponse" + body);
                 }
             }
         });
@@ -92,5 +93,34 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < response.contentLength(); i++){
 
         }
+    }
+
+    public void createContact(String name, String email, String phone, String type){
+        FormBody formBody = new FormBody.Builder()
+                .add("name", name)
+                .add("email", email)
+                .add("phone", phone)
+                .add("type", type)
+                .build();
+        Request requestSend = new Request.Builder()
+                .url("https://www.theappsdr.com/contact/json/create")
+                .post(formBody)
+                .build();
+        client.newCall(requestSend).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.d(TAG, "onResponse: Thread Id " + Thread.currentThread().getId());
+                if(response.isSuccessful()){
+                    ResponseBody responseBody = response.body();
+                    String body = responseBody.string();
+                    Log.d(TAG, "onResponse" + body);
+                }
+            }
+        });
     }
 }
